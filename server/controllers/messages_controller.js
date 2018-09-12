@@ -1,10 +1,10 @@
-let message = [];
+let messages = [];
 let id = 0;
 
 module.exports = {
     create: (req, res) => {
         const { text, time } = req.body;
-        message.push({id, text, time });
+        messages.push({id, text, time });
         id++;
         res.status(200).send( messages );
     },
@@ -22,13 +22,13 @@ module.exports = {
             text: text || message.text,
             time: message.time
         };
-        res.status(200).send( message )
+        res.status(200).send( messages )
     },
     delete: (req, res) => {
         const deleteID = req.params.id;
         messageIndex = messages.findIndex( message => message.id == deleteID);
         messages.splice(messageIndex, 1);
-        res.status(200).send( message );
+        res.status(200).send( messages );
     }
 };
 
